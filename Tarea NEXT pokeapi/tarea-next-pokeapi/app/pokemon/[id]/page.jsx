@@ -71,9 +71,15 @@ export default function Page({ params }) {
           )}
         </Modal.Body>
         <Modal.Footer>
-          <Link href="/pokemon" passHref> {/*Rut a la que vuelve cuando pulsas cerrar*/}
-            <button style={styles.button}>Cerrar</button>
+          <Link href="/pokemon" passHref> {/*Pokemon anterior - Falta poner la ruta, pero no recuerdo como ponerla dinámica*/}
+            <button style={styles.button}>Anterior</button>
           </Link>
+          <Link href="/pokemon" passHref> {/*Pokemon siguiente - Falta poner la ruta, pero no recuerdo como ponerla dinámica*/}
+            <button style={styles.button}>Siguiente</button>
+          </Link>
+          <Link href="/pokemon" passHref> {/*Ruta que vuelve a la pagina principal cuando pulsas cerrar*/}
+            <button style={styles.button}>Cerrar</button>
+          </Link>                    
         </Modal.Footer>
       </Modal>
     </>

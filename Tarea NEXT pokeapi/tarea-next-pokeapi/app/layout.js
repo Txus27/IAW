@@ -16,8 +16,8 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "PokeApi NEXT - JLS",
-  description: "PokeApi NEXT - JLS",
+  title: "Detalle del POKEMON", // Añado "Detalle del POKEMON"
+  description: "Detalle del POKEMON",
 };
 
 export default function RootLayout({ children }) {
