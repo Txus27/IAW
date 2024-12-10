@@ -10,6 +10,7 @@ function Navigation() {
         <Nav.Link href="#"><FaHome /> Inicio</Nav.Link>
         <Nav.Link href="#"><FaEnvelope /> Contacto</Nav.Link>
         <Nav.Link href="#"><FaWrench /> Servicios</Nav.Link>
+        <Nav.Link href="/src/defensa"><FaHome /> Defensa</Nav.Link>
       </Nav>
     </Navbar>
   );
