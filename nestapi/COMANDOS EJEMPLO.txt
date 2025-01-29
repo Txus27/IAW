@@ -1,0 +1,17 @@
+POKEMON:
+Busca por Tipo en Thunder:
+http://localhost:5000/pokemon/tipopokemon?tipo=planta
+
+Busca por Hp en Thunder:
+http://localhost:5000/pokemon/hp?hp=90
+
+Busca por Nombre en Thunder:
+http://localhost:5000/pokemon/nombrepokemon?nombre=pikachu
+
+CINE:
+Busca por Titulo en Thunder:
+http://localhost:5000/cine/titulocine?titulo=Star Wars La Venganza de los Sith
+
+Busca por Titulo en Thunder:
+http://localhost:5000/cine/menosano?año=2013
+
