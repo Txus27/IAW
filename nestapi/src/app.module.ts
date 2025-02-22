@@ -53,6 +53,17 @@ import { PokemonModule } from './pokemon/pokemon.module';
       autoLoadEntities:true,
       synchronize:true
     }),
+    TypeOrmModule.forRoot({
+      name:'_evaluacion',
+      type:'mysql',
+      host:process.env.URL,
+      port:3306,
+      username:process.env.USUARIO,
+      password:process.env.PASSWORD,
+      database: process.env.DBNAMETAREAS,
+      autoLoadEntities:true,
+      synchronize:true
+    }),
     UsuarioModule,
     AlumnoModule,
     BibliotecaModule,

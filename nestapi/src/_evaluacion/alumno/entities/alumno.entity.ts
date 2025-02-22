@@ -1,6 +1,7 @@
-import { AlumnoHaceExamenTeorico } from "src/_evaluacion/alumnohaceexamenteorico/entities/alumnohaceexamenteorico.entity";
-import { AlumnoRealizaPractica } from "src/_evaluacion/alumnorealizapractica/entities/alumnorealizapractica.entity";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
+import { ExamenTeorico } from 'src/_evaluacion/examenteorico/entities/examenteorico.entity';
+import { Practica } from 'src/_evaluacion/practica/entities/practica.entity';
+
 
 @Entity()
 export class Alumno {
@@ -22,9 +23,14 @@ export class Alumno {
   @Column()
   apellido2: string;
 
-  @OneToMany(() => AlumnoRealizaPractica, (realiza) => realiza.alumno)
-  practicas: AlumnoRealizaPractica[];
+  @ManyToMany(() => Practica, practica => practica.alumnos)
+  practicas: Practica[];
 
-  @OneToMany(() => AlumnoHaceExamenTeorico, (hace) => hace.alumno)
-  examenes: AlumnoHaceExamenTeorico[];
+  @ManyToMany(() => ExamenTeorico, examen => examen.alumnos)
+  @JoinTable({
+    name: 'alumno_hace_examen_teorico',
+    joinColumn: { name: 'alumno_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'examen_teorico_id', referencedColumnName: 'id' },
+  })
+  examenes: ExamenTeorico[];
 }

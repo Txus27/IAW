@@ -1,6 +1,6 @@
-import { ExamenTeorico } from "src/_evaluacion/examenteotico/entities/examenteotico.entity";
-import { ProfesorDisenaPractica } from "src/_evaluacion/profesordisenapractica/entities/profesordisenapractica.entity";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany } from 'typeorm';
+import { Practica } from 'src/_evaluacion/practica/entities/practica.entity';
+import { ExamenTeorico } from 'src/_evaluacion/examenteorico/entities/examenteorico.entity';
 
 @Entity()
 export class Profesor {
@@ -19,9 +19,9 @@ export class Profesor {
   @Column()
   apellido2: string;
 
-  @OneToMany(() => ExamenTeorico, (examen) => examen.profesor)
-  examenes: ExamenTeorico[];
+  @ManyToMany(() => Practica, practica => practica.profesores)
+  practicas: Practica[];
 
-  @OneToMany(() => ProfesorDisenaPractica, (disena) => disena.profesor)
-  practicasDisenadas: ProfesorDisenaPractica[];
+  @OneToMany(() => ExamenTeorico, examen => examen.profesor)
+  examenes: ExamenTeorico[];
 }
