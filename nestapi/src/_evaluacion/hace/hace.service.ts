@@ -56,5 +56,3 @@ export class HaceService {
     return `Result (Student=${AlumnoId}, TheoreticalExam=${ExamenTeoricoId}) successfully deleted`;
   }
 }
-
-
