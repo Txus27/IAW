@@ -6,18 +6,14 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 export class Hace {
   @PrimaryColumn()
   AlumnoId: number;
-
   @PrimaryColumn()
-  idExamenTeorico: number;
-
+  ExamenTeoricoId: number;
   @Column()
   nota: number;
-
   @ManyToOne(() => Alumno, (alumno) => alumno.hace)
   @JoinColumn({ name: 'AlumnoId' })
   alumno: Alumno;
-
   @ManyToOne(() => ExamenTeorico, (examen) => examen.hace)
-  @JoinColumn({ name: 'idExamenTeorico' })
+  @JoinColumn({ name: 'ExamenTeoricoId' })
   examenTeorico: ExamenTeorico;
 }

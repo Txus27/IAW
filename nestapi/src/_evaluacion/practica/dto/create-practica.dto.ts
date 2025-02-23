@@ -8,4 +8,3 @@ export class CreatePracticaDto {
   @IsString()
   dificultad: string;
 }
-

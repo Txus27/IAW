@@ -9,5 +9,4 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   controllers: [AlumnoController],
   providers: [AlumnoService],
 })
-
 export class AlumnoModule {}

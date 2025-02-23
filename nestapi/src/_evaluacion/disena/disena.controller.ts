@@ -15,15 +15,15 @@ export class DisenaController {
     return this.disenaService.findAll();
   }
   @Get(':id')
-  findOne(@Param('id') id: string, @Param('idPractica') idPractica: string, @Param('fecha') fecha: string) {
-    return this.disenaService.findOne(+id, +idPractica, fecha);
+  findOne(@Param('id') id: string, @Param('PracticaId') PracticaId: string, @Param('fecha') fecha: string) {
+    return this.disenaService.findOne(+id, +PracticaId, fecha);
   }
   @Put(':id')
-  update(@Param('id') id: string, @Param('idPractica') idPractica: string, @Param('fecha') fecha: string, @Body() updateDisenaDto: UpdateDisenaDto) {
-    return this.disenaService.update(+id, +idPractica, fecha, updateDisenaDto);
+  update(@Param('id') id: string, @Param('PracticaId') PracticaId: string, @Param('fecha') fecha: string, @Body() updateDisenaDto: UpdateDisenaDto) {
+    return this.disenaService.update(+id, +PracticaId, fecha, updateDisenaDto);
   }
   @Delete(':id')
-  remove(@Param('id') id: string, @Param('idPractica') idPractica: string, @Param('fecha') fecha: string) {
-    return this.disenaService.remove(+id, +idPractica, fecha);
+  remove(@Param('id') id: string, @Param('PracticaId') PracticaId: string, @Param('fecha') fecha: string) {
+    return this.disenaService.remove(+id, +PracticaId, fecha);
   }
 }

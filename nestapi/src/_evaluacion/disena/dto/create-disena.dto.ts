@@ -3,10 +3,10 @@ import { IsDateString, IsNotEmpty, IsNumber } from 'class-validator';
 export class CreateDisenaDto {
   @IsNotEmpty()
   @IsNumber()
-  idPractica: number;
+  PracticaId: number;
   @IsNotEmpty()
   @IsNumber()
-  idProfesor: number;
+  ProfesorId: number;
   @IsNotEmpty()
   @IsDateString()
   fecha: string;

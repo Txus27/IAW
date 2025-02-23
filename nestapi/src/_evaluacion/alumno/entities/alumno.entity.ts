@@ -6,19 +6,14 @@ import { Hace } from '../../hace/entities/hace.entity';
 export class Alumno {
   @PrimaryGeneratedColumn()
   id: number;
-
   @Column()
   nif: string;
-
   @Column()
   nombre: string;
-
   @Column()
   apellido1: string;
-
   @Column()
   apellido2: string;
-
   @Column()
   grupo: Number;
  // Relaciones

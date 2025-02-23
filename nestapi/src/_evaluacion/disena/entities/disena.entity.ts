@@ -5,15 +5,15 @@ import { Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 @Entity()
 export class Disena {
   @PrimaryColumn()
-  idProfesor: number;
+  ProfesorId: number;
   @PrimaryColumn()
-  idPractica: number;
+  PracticaId: number;
   @PrimaryColumn()
   fecha: Date;
   @ManyToOne(() => Profesor, (profesor) => profesor.disena)
-  @JoinColumn({ name: 'idProfesor' })
+  @JoinColumn({ name: 'ProfesorId' })
   profesor: Profesor;
   @ManyToOne(() => Practica, (practica) => practica.disena)
-  @JoinColumn({ name: 'idPractica' })
+  @JoinColumn({ name: 'PracticaId' })
   practica: Practica;
 }

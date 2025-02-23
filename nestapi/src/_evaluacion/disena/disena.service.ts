@@ -13,59 +13,60 @@ export class DisenaService {
   ) {}
   async create(createDisenaDto: CreateDisenaDto): Promise<Disena> {
     const disena = this.disenaRepository.create(createDisenaDto);
-    return await this.disenaRepository.save(disena);
+    return await this.disenaRepository.save(disena); // Retorna la entidad Disena creada y guardada.
   }
   async findAll(): Promise<Disena[]> {
-    return await this.disenaRepository.find();
+    return await this.disenaRepository.find(); // Retorna un array con todas las entidades Disena encontradas.
   }
   async findOne(
-    idProfesor: number,
-    idPractica: number,
+    ProfesorId: number,
+    PracticaId: number,
     fecha: string,
   ): Promise<Disena> {
     const fechaConvertida = new Date(fecha);
     const disena = await this.disenaRepository.findOne({
-      where: { idProfesor, idPractica, fecha: fechaConvertida },
+      where: { ProfesorId, PracticaId, fecha: fechaConvertida },
     });
     if (!disena) {
-      throw new NotFoundException(`Design not found (Professor=${idProfesor}, Practice=${idPractica}, Date=${fecha})`,
+      throw new NotFoundException(
+        `Diseño no encontrado (Profesor=${ProfesorId}, Práctica=${PracticaId}, Fecha=${fecha})`,
       );
     }
-    return disena;
+    return disena; // Retorna la entidad Disena encontrada.
   }
   async update(
-    idProfesor: number,
-    idPractica: number,
+    ProfesorId: number,
+    PracticaId: number,
     fecha: string,
     updateDisenaDto: UpdateDisenaDto,
   ): Promise<Disena> {
     const fechaConvertida = new Date(fecha);
     const disena = await this.disenaRepository.findOne({
-      where: { idProfesor, idPractica, fecha: fechaConvertida },
+      where: { ProfesorId, PracticaId, fecha: fechaConvertida },
     });
     if (!disena) {
       throw new NotFoundException(
-        `Design not found (Professor=${idProfesor}, Practice=${idPractica}, Date=${fecha})`,
+        `Diseño no encontrado (Profesor=${ProfesorId}, Práctica=${PracticaId}, Fecha=${fecha})`,
       );
     }
     Object.assign(disena, updateDisenaDto);
-    return this.disenaRepository.save(disena);
+    return this.disenaRepository.save(disena); // Retorna la entidad Disena actualizada y guardada.
   }
   async remove(
-    idProfesor: number,
-    idPractica: number,
+    ProfesorId: number,
+    PracticaId: number,
     fecha: string,
   ): Promise<string> {
     const fechaConvertida = new Date(fecha);
     const disena = await this.disenaRepository.findOne({
-      where: { idProfesor, idPractica, fecha: fechaConvertida },
+      where: { ProfesorId, PracticaId, fecha: fechaConvertida },
     });
     if (!disena) {
-      throw new NotFoundException(`Design not found (Professor=${idProfesor}, Practice=${idPractica}, Date=${fecha})`,
+      throw new NotFoundException(
+        `Diseño no encontrado (Profesor=${ProfesorId}, Práctica=${PracticaId}, Fecha=${fecha})`,
       );
     }
     await this.disenaRepository.remove(disena);
-    return `Design (Professor=${idProfesor}, Practice=${idPractica}, Date=${fecha}) successfully deleted`;
+    return `Diseño (Profesor=${ProfesorId}, Práctica=${PracticaId}, Fecha=${fecha}) eliminado correctamente`; // Retorna un mensaje indicando que la entidad Disena fue eliminada.
   }
 }
-

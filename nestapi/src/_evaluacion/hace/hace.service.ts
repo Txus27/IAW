@@ -11,46 +11,49 @@ export class HaceService {
     @InjectRepository(Hace, 'apitarea')
     private readonly haceRepository: Repository<Hace>,
   ) {}
+
   async create(createHaceDto: CreateHaceDto): Promise<Hace> {
     const hace = this.haceRepository.create(createHaceDto);
     return await this.haceRepository.save(hace);
   }
+
   async findAll(): Promise<Hace[]> {
     return await this.haceRepository.find();
   }
-  async findOne(AlumnoId: number, idExamenTeorico: number): Promise<Hace> {
+  async findOne(AlumnoId: number, ExamenTeoricoId: number): Promise<Hace> {
     const hace = await this.haceRepository.findOne({
-      where: { AlumnoId, idExamenTeorico },
+      where: { AlumnoId, ExamenTeoricoId },
     });
     if (!hace) throw new NotFoundException(
-        `Result not found (Student=${AlumnoId}, TheoreticalExam=${idExamenTeorico})`,
+        `Result not found (Student=${AlumnoId}, TheoreticalExam=${ExamenTeoricoId})`,
       );
     return hace;
   }
+
   async update(
     AlumnoId: number,
-    idExamenTeorico: number,
+    ExamenTeoricoId: number,
     updateHaceDto: UpdateHaceDto,
   ): Promise<Hace> {
     const hace = await this.haceRepository.findOne({
-      where: { AlumnoId, idExamenTeorico },
+      where: { AlumnoId, ExamenTeoricoId },
     });
     if (!hace) {
       throw new NotFoundException(
-        `Result not found (Student=${AlumnoId}, TheoreticalExam=${idExamenTeorico})`,
+        `Result not found (Student=${AlumnoId}, TheoreticalExam=${ExamenTeoricoId})`,
       );
     }
     Object.assign(hace, updateHaceDto);
     return this.haceRepository.save(hace);
   }
-  async remove(AlumnoId: number, idExamenTeorico: number): Promise<string> {
+  async remove(AlumnoId: number, ExamenTeoricoId: number): Promise<string> {
     const hace = await this.haceRepository.findOne({
-      where: { AlumnoId, idExamenTeorico },
+      where: { AlumnoId, ExamenTeoricoId },
     });
-    if (!hace) throw new NotFoundException(`Result not found (Student=${AlumnoId}, TheoreticalExam=${idExamenTeorico})`,
+    if (!hace) throw new NotFoundException(`Result not found (Student=${AlumnoId}, TheoreticalExam=${ExamenTeoricoId})`,
       );
     await this.haceRepository.remove(hace);
-    return `Result (Student=${AlumnoId}, TheoreticalExam=${idExamenTeorico}) successfully deleted`;
+    return `Result (Student=${AlumnoId}, TheoreticalExam=${ExamenTeoricoId}) successfully deleted`;
   }
 }
 

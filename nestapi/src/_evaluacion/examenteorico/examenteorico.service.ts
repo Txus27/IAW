@@ -20,20 +20,20 @@ export class ExamenTeoricoService {
   }
   async findOne(id: number): Promise<ExamenTeorico> {
     const examen = await this.examenTeoricoRepository.findOne({ where: { id } });
-    if (!examen) throw new Error(`Theoretical Exam with ID ${id} not found`);
+    if (!examen) throw new Error(`No se encuentra el examen con ID ${id} `);
     
     return examen;
   }
   async update(id: number, updateExamenTeoricoDto: UpdateExamenTeoricoDto): Promise<ExamenTeorico> {
     const examen = await this.examenTeoricoRepository.findOne({ where: { id } });
-    if (!examen) throw new NotFoundException (`Theoretical Exam with ID ${id} not found`);
+    if (!examen) throw new NotFoundException (`No se encuentra el examen con ID ${id} `);
     Object.assign(examen, updateExamenTeoricoDto);
     return this.examenTeoricoRepository.save(examen);
   }
   async remove(id: number): Promise<string> {
     const examen = await this.examenTeoricoRepository.findOne({ where: { id } });
-    if (!examen) throw new NotFoundException(`Theoretical Exam with ID ${id} not found`);
+    if (!examen) throw new NotFoundException(`No se encuentra el examen con ID ${id} `);
     await this.examenTeoricoRepository.remove(examen);
-    return `Theoretical Exam with ID ${id} successfully deleted`;
+    return `Examen con ID ${id} borrado`;
   }
 }

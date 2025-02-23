@@ -20,20 +20,17 @@ export class AlumnoService {
   }
   async findOne(id: number): Promise<Alumno> {
     const alumno = await this.alumnoRepository.findOne({ where: { id } });
-    if (!alumno) throw new NotFoundException(`User with id ${id} not found`);
     return alumno;
   }
   async update(id: number, updateAlumnoDto: UpdateAlumnoDto): Promise<Alumno> {
     const alumno = await this.alumnoRepository.findOne({ where: { id } });
-    if (!alumno) throw new NotFoundException(`User with id ${id} not found`);
     Object.assign(alumno, updateAlumnoDto);
     return this.alumnoRepository.save(alumno);
   }
   async remove(id: number): Promise<string> {
     const alumno = await this.alumnoRepository.findOne({ where: { id } });
-    if (!alumno) throw new Error(`Alumno con ID ${id} no encontrado`);
     await this.alumnoRepository.remove(alumno);
-    return `User with id ${id} not found`;
+    return `Alunmo ${id} no encontrado`;
   }
 }
 
