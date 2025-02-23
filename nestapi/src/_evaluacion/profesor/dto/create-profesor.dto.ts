@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsNumber, IsPositive, IsString } from "class-validator";
 
-export class ProfesorDTO {
+export class CreateProfesorDto {
     @IsNotEmpty()
     id: number;
     @IsString()

@@ -1,11 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 import { Profesor } from 'src/_evaluacion/profesor/entities/profesor.entity';
-import { Alumno } from 'src/_evaluacion/alumno/entities/alumno.entity';
+import { AlumnoHaceExamenTeorico } from 'src/_evaluacion/alumnorhaceexamenteorico/entities/alumnorhaceexamenteorico.entity';
 
 @Entity()
 export class ExamenTeorico {
   @PrimaryGeneratedColumn()
-  id: number;
+  examenteoricoId: number;
 
   @Column()
   titulo: string;
@@ -20,6 +20,6 @@ export class ExamenTeorico {
   @JoinColumn({ name: 'profesor_id' })
   profesor: Profesor;
 
-  @ManyToMany(() => Alumno, alumno => alumno.examenes)
-  alumnos: Alumno[];
+  @OneToMany(() => AlumnoHaceExamenTeorico, (alumnohaceexamenteorico) => alumnohaceexamenteorico.examenTeorico)
+  alumnos: AlumnoHaceExamenTeorico[];
 }

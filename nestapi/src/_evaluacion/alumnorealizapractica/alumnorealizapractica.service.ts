@@ -1,26 +1,44 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { AlumnoRealizaPractica } from './entities/alumnorealizapractica.entity';
 import { CreateAlumnorealizapracticaDto } from './dto/create-alumnorealizapractica.dto';
 import { UpdateAlumnorealizapracticaDto } from './dto/update-alumnorealizapractica.dto';
 
 @Injectable()
 export class AlumnorealizapracticaService {
-  create(createAlumnorealizapracticaDto: CreateAlumnorealizapracticaDto) {
-    return 'This action adds a new alumnorealizapractica';
+  constructor(
+    @InjectRepository(AlumnoRealizaPractica, 'base1')
+    private readonly alumnoRealizaPracticaRepository: Repository<AlumnoRealizaPractica>,
+  ) {}
+
+  async create(createAlumnorealizapracticaDto: CreateAlumnorealizapracticaDto): Promise<AlumnoRealizaPractica> {
+    const alumnoRealizaPractica = this.alumnoRealizaPracticaRepository.create(createAlumnorealizapracticaDto);
+    return await this.alumnoRealizaPracticaRepository.save(alumnoRealizaPractica);
   }
 
-  findAll() {
-    return `This action returns all alumnorealizapractica`;
+  async findAll(): Promise<AlumnoRealizaPractica[]> {
+    return await this.alumnoRealizaPracticaRepository.find({
+      relations: ['alumno', 'practica'],
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} alumnorealizapractica`;
+  async findOne(alumnoId: number, practicaId: number): Promise<AlumnoRealizaPractica> {
+    return await this.alumnoRealizaPracticaRepository.findOne({
+      where: { alumnoId, practicaId },
+      relations: ['alumno', 'practica'],
+    });
   }
 
-  update(id: number, updateAlumnorealizapracticaDto: UpdateAlumnorealizapracticaDto) {
-    return `This action updates a #${id} alumnorealizapractica`;
+  async update(alumnoId: number, practicaId: number, updateAlumnorealizapracticaDto: UpdateAlumnorealizapracticaDto): Promise<AlumnoRealizaPractica> {
+    await this.alumnoRealizaPracticaRepository.update({ alumnoId, practicaId }, updateAlumnorealizapracticaDto);
+    return await this.alumnoRealizaPracticaRepository.findOne({
+      where: { alumnoId, practicaId },
+      relations: ['alumno', 'practica'],
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} alumnorealizapractica`;
+  async remove(alumnoId: number, practicaId: number): Promise<void> {
+    await this.alumnoRealizaPracticaRepository.delete({ alumnoId, practicaId });
   }
 }

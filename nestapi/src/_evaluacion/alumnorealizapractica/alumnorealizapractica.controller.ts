@@ -3,32 +3,36 @@ import { AlumnorealizapracticaService } from './alumnorealizapractica.service';
 import { CreateAlumnorealizapracticaDto } from './dto/create-alumnorealizapractica.dto';
 import { UpdateAlumnorealizapracticaDto } from './dto/update-alumnorealizapractica.dto';
 
-@Controller('alumnorealizapractica')
-export class AlumnorealizapracticaController {
-  constructor(private readonly alumnorealizapracticaService: AlumnorealizapracticaService) {}
+@Controller('alumno-realiza-practica')
+export class AlumnoRealizaPracticaController {
+  constructor(private readonly alumnoRealizaPracticaService: AlumnorealizapracticaService) {}
 
   @Post()
-  create(@Body() createAlumnorealizapracticaDto: CreateAlumnorealizapracticaDto) {
-    return this.alumnorealizapracticaService.create(createAlumnorealizapracticaDto);
+  create(@Body() createAlumnoRealizaPracticaDto: CreateAlumnorealizapracticaDto) {
+    return this.alumnoRealizaPracticaService.create(createAlumnoRealizaPracticaDto);
   }
 
   @Get()
   findAll() {
-    return this.alumnorealizapracticaService.findAll();
+    return this.alumnoRealizaPracticaService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.alumnorealizapracticaService.findOne(+id);
+  @Get(':alumnoId/:practicaId')
+  findOne(@Param('alumnoId') alumnoId: string, @Param('practicaId') practicaId: string) {
+    return this.alumnoRealizaPracticaService.findOne(+alumnoId, +practicaId);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAlumnorealizapracticaDto: UpdateAlumnorealizapracticaDto) {
-    return this.alumnorealizapracticaService.update(+id, updateAlumnorealizapracticaDto);
+  @Patch(':alumnoId/:practicaId')
+  update(
+    @Param('alumnoId') alumnoId: string,
+    @Param('practicaId') practicaId: string,
+    @Body() updateAlumnoRealizaPracticaDto: UpdateAlumnorealizapracticaDto,
+  ) {
+    return this.alumnoRealizaPracticaService.update(+alumnoId, +practicaId, updateAlumnoRealizaPracticaDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.alumnorealizapracticaService.remove(+id);
+  @Delete(':alumnoId/:practicaId')
+  remove(@Param('alumnoId') alumnoId: string, @Param('practicaId') practicaId: string) {
+    return this.alumnoRealizaPracticaService.remove(+alumnoId, +practicaId);
   }
 }

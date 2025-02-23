@@ -8,16 +8,16 @@ export class AlumnoHaceExamenTeorico {
   alumnoId: number;
 
   @PrimaryColumn()
-  examenTeoricoId: number;
+  examenTeoricoId: number; 
 
   @Column()
   nota: number;
 
-  @ManyToOne(() => Alumno, alumno => alumno.examenes)
+  @ManyToOne(() => Alumno, alumno => alumno.alumnosHacenExamenTeorico)
   @JoinColumn({ name: 'alumnoId' })
-  alumno: Alumno;
+  alumno: Alumno; 
 
   @ManyToOne(() => ExamenTeorico, examen => examen.alumnos)
   @JoinColumn({ name: 'examenTeoricoId' })
-  examenTeorico: ExamenTeorico;
+  examenTeorico: ExamenTeorico; 
 }

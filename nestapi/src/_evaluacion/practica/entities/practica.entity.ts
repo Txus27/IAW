@@ -1,7 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
-import { Alumno } from 'src/_evaluacion/alumno/entities/alumno.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, OneToMany } from 'typeorm';
 import { Profesor } from 'src/_evaluacion/profesor/entities/profesor.entity';
-
+import { AlumnoRealizaPractica } from 'src/_evaluacion/alumnorealizapractica/entities/alumnorealizapractica.entity';
 
 @Entity()
 export class Practica {
@@ -22,11 +21,6 @@ export class Practica {
   })
   profesores: Profesor[];
 
-  @ManyToMany(() => Alumno, alumno => alumno.practicas)
-  @JoinTable({
-    name: 'alumno_realiza_practica',
-    joinColumn: { name: 'practica_id', referencedColumnName: 'id' },
-    inverseJoinColumn: { name: 'alumno_id', referencedColumnName: 'id' },
-  })
-  alumnos: Alumno[];
+  @OneToMany(() => AlumnoRealizaPractica, (arp) => arp.practica)
+  alumnos: AlumnoRealizaPractica[];
 }

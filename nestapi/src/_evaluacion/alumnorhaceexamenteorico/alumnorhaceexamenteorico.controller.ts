@@ -17,18 +17,22 @@ export class AlumnorhaceexamenteoricoController {
     return this.alumnorhaceexamenteoricoService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.alumnorhaceexamenteoricoService.findOne(+id);
+  @Get(':alumnoId/:examenTeoricoId')
+  findOne(@Param('alumnoId') alumnoId: string, @Param('examenTeoricoId') examenTeoricoId: string) {
+    return this.alumnorhaceexamenteoricoService.findOne(+alumnoId, +examenTeoricoId);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAlumnorhaceexamenteoricoDto: UpdateAlumnorhaceexamenteoricoDto) {
-    return this.alumnorhaceexamenteoricoService.update(+id, updateAlumnorhaceexamenteoricoDto);
+  @Patch(':alumnoId/:examenTeoricoId')
+  update(
+    @Param('alumnoId') alumnoId: string,
+    @Param('examenTeoricoId') examenTeoricoId: string,
+    @Body() updateAlumnorhaceexamenteoricoDto: UpdateAlumnorhaceexamenteoricoDto,
+  ) {
+    return this.alumnorhaceexamenteoricoService.update(+alumnoId, +examenTeoricoId, updateAlumnorhaceexamenteoricoDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.alumnorhaceexamenteoricoService.remove(+id);
+  @Delete(':alumnoId/:examenTeoricoId')
+  remove(@Param('alumnoId') alumnoId: string, @Param('examenTeoricoId') examenTeoricoId: string) {
+    return this.alumnorhaceexamenteoricoService.remove(+alumnoId, +examenTeoricoId);
   }
 }

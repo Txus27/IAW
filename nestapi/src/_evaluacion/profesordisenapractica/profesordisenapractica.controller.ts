@@ -17,18 +17,22 @@ export class ProfesordisenapracticaController {
     return this.profesordisenapracticaService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.profesordisenapracticaService.findOne(+id);
+  @Get(':profesorId/:practicaId')
+  findOne(@Param('profesorId') profesorId: string, @Param('practicaId') practicaId: string) {
+    return this.profesordisenapracticaService.findOne(+profesorId, +practicaId);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProfesordisenapracticaDto: UpdateProfesordisenapracticaDto) {
-    return this.profesordisenapracticaService.update(+id, updateProfesordisenapracticaDto);
+  @Patch(':profesorId/:practicaId')
+  update(
+    @Param('profesorId') profesorId: string,
+    @Param('practicaId') practicaId: string,
+    @Body() updateProfesordisenapracticaDto: UpdateProfesordisenapracticaDto,
+  ) {
+    return this.profesordisenapracticaService.update(+profesorId, +practicaId, updateProfesordisenapracticaDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.profesordisenapracticaService.remove(+id);
+  @Delete(':profesorId/:practicaId')
+  remove(@Param('profesorId') profesorId: string, @Param('practicaId') practicaId: string) {
+    return this.profesordisenapracticaService.remove(+profesorId, +practicaId);
   }
 }

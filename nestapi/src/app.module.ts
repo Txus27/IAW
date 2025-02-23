@@ -2,10 +2,17 @@ import { Module} from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsuarioModule } from './usuario/usuario.module';
-import { AlumnoModule } from './alumno/alumno.module';
+//import { AlumnoModule } from './alumno/alumno.module';
 import { BibliotecaModule } from './biblioteca/biblioteca.module';
 import { CineModule } from './cine/cine.module';
 import { PokemonModule } from './pokemon/pokemon.module';
+import { AlumnorealizapracticaModule } from './_evaluacion/alumnorealizapractica/alumnorealizapractica.module';
+import { AlumnoModule } from './_evaluacion/alumno/alumno.module';
+import { AlumnorhaceexamenteoricoModule } from './_evaluacion/alumnorhaceexamenteorico/alumnorhaceexamenteorico.module';
+import { ExamenteoricoModule } from './_evaluacion/examenteorico/examenteorico.module';
+import { PracticaModule } from './_evaluacion/practica/practica.module';
+import { ProfesorModule } from './_evaluacion/profesor/profesor.module';
+import { ProfesordisenapracticaModule } from './_evaluacion/profesordisenapractica/profesordisenapractica.module';
 
 @Module({
   imports: [ConfigModule.forRoot({isGlobal:true,}), 
@@ -54,7 +61,7 @@ import { PokemonModule } from './pokemon/pokemon.module';
       synchronize:true
     }),
     TypeOrmModule.forRoot({
-      name:'_evaluacion',
+      name:'evaluacion',
       type:'mysql',
       host:process.env.URL,
       port:3306,
@@ -65,10 +72,17 @@ import { PokemonModule } from './pokemon/pokemon.module';
       synchronize:true
     }),
     UsuarioModule,
-    AlumnoModule,
+    //AlumnoModule
     BibliotecaModule,
     CineModule,
-    PokemonModule
+    PokemonModule,
+    AlumnorealizapracticaModule,
+    AlumnoModule,
+    AlumnorhaceexamenteoricoModule,
+    ExamenteoricoModule,
+    PracticaModule,
+    ProfesorModule,
+    ProfesordisenapracticaModule
   ],
   controllers: [],
   providers: [],

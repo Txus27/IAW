@@ -1,6 +1,6 @@
 import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
-export class ExamenTeoricoDTO {
+export class CreateExamenteoricoDto {
     @IsNotEmpty()
     @IsNumber()
     id: number;

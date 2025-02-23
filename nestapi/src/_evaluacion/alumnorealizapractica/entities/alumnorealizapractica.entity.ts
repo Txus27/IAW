@@ -16,7 +16,7 @@ export class AlumnoRealizaPractica {
   @Column()
   nota: number;
 
-  @ManyToOne(() => Alumno, alumno => alumno.practicas)
+  @ManyToOne(() => Alumno, alumno => alumno.alumnorealizapractica)
   @JoinColumn({ name: 'alumnoId' })
   alumno: Alumno;
 

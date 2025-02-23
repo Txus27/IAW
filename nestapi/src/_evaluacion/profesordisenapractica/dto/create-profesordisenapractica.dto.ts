@@ -1,6 +1,6 @@
 import { IsDate, IsNotEmpty } from "class-validator";
 
-export class ProfesorDisenaPracticaDTO {
+export class CreateProfesordisenapracticaDto {
     @IsNotEmpty()
     profesorId: number;
     @IsNotEmpty()
