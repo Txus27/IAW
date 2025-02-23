@@ -8,7 +8,7 @@ import { UpdateProfesordisenapracticaDto } from './dto/update-profesordisenaprac
 @Injectable()
 export class ProfesordisenapracticaService {
   constructor(
-    @InjectRepository(ProfesorDisenaPractica, 'base1')
+    @InjectRepository(ProfesorDisenaPractica, 'apitarea')
     private readonly profesorDisenaPracticaRepository: Repository<ProfesorDisenaPractica>,
   ) {}
 

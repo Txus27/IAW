@@ -7,7 +7,7 @@ import { AlumnoRealizaPractica } from './entities/alumnorealizapractica.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [ TypeOrmModule.forFeature([AlumnoRealizaPractica, Practica, Alumno],'base1',),],
+  imports: [ TypeOrmModule.forFeature([AlumnoRealizaPractica, Practica, Alumno],'apitarea',),],
   controllers: [AlumnoRealizaPracticaController],
   providers: [AlumnorealizapracticaService],
 })

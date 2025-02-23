@@ -25,7 +25,7 @@ export class Alumno {
 
   @OneToMany(
     () => AlumnoHaceExamenTeorico,
-    (alumnoshacenexamenteorico) => alumnoshacenexamenteorico.Alumno, 
+    (alumnoshacenexamenteorico) => alumnoshacenexamenteorico.alumno,
   )
   alumnosHacenExamenTeorico: AlumnoHaceExamenTeorico[];
 

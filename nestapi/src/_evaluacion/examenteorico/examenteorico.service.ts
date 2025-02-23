@@ -8,7 +8,7 @@ import { UpdateExamenteoricoDto } from './dto/update-examenteorico.dto';
 @Injectable()
 export class ExamenteoricoService {
   constructor(
-    @InjectRepository(ExamenTeorico, 'base1')
+    @InjectRepository(ExamenTeorico, 'apitarea')
     private readonly examenTeoricoRepository: Repository<ExamenTeorico>,
   ) {}
 
@@ -25,7 +25,7 @@ export class ExamenteoricoService {
 
   async findOne(id: number): Promise<ExamenTeorico> {
     const examenTeorico = await this.examenTeoricoRepository.findOne({
-      where: { id },
+      where: { examenteoricoId: id },
       relations: ['alumnosHacenExamenTeorico'],
     });
 

@@ -5,10 +5,12 @@ import { Profesor } from './entities/profesor.entity';
 import { CreateProfesorDto } from './dto/create-profesor.dto';
 import { UpdateProfesorDto } from './dto/update-profesor.dto';
 
+
+
 @Injectable()
 export class ProfesorService {
   constructor(
-    @InjectRepository(Profesor, 'base1')
+    @InjectRepository(Profesor, 'apitarea')
     private readonly profesorRepository: Repository<Profesor>,
   ) {}
 
@@ -19,14 +21,14 @@ export class ProfesorService {
 
   async findAll(): Promise<Profesor[]> {
     return await this.profesorRepository.find({
-      relations: ['profesoresDisenanPractica'],
+      relations: ['practicas', 'examenes'],
     });
   }
 
   async findOne(id: number): Promise<Profesor> {
     const profesor = await this.profesorRepository.findOne({
       where: { id },
-      relations: ['profesoresDisenanPractica'],
+      relations: ['practicas', 'examenes'],
     });
 
     if (!profesor) {
@@ -37,9 +39,10 @@ export class ProfesorService {
   }
 
   async update(id: number, updateProfesorDto: UpdateProfesorDto): Promise<Profesor> {
-    await this.profesorRepository.update(id, updateProfesorDto); 
-    return this.findOne(id);
-  }
+    const profesor = await this.findOne(id);
+    this.profesorRepository.merge(profesor, updateProfesorDto);
+    return await this.profesorRepository.save(profesor);
+}
 
   async remove(id: number): Promise<void> {
     const result = await this.profesorRepository.delete(id);

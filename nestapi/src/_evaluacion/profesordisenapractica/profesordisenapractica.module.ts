@@ -7,7 +7,7 @@ import { Profesor } from '../profesor/entities/profesor.entity';
 import { Practica } from '../practica/entities/practica.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ProfesorDisenaPractica, Profesor, Practica], 'base1')],
+  imports: [TypeOrmModule.forFeature([ProfesorDisenaPractica, Profesor, Practica], 'apitarea')],
   controllers: [ProfesordisenapracticaController],
   providers: [ProfesordisenapracticaService],
 })

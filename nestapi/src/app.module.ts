@@ -25,7 +25,7 @@ import { ProfesordisenapracticaModule } from './_evaluacion/profesordisenapracti
       password:process.env.PASSWORD,
       database: process.env.DBNAME,
       autoLoadEntities:true,//Esta es la mejor opción para que coja sólo las que haya en módulo
-      synchronize:true
+      synchronize:false
     }),
     TypeOrmModule.forRoot({
       name:'base2',
@@ -36,7 +36,7 @@ import { ProfesordisenapracticaModule } from './_evaluacion/profesordisenapracti
       password:process.env.PASSWORD,
       database: process.env.DBNAME2,
       autoLoadEntities:true,//Esta es la mejor opción para que coja sólo las que haya en módulo
-      synchronize:true
+      synchronize:false
     }),
     TypeOrmModule.forRoot({
       name:'cine',
@@ -47,7 +47,7 @@ import { ProfesordisenapracticaModule } from './_evaluacion/profesordisenapracti
       password:process.env.PASSWORD,
       database: process.env.DBNAMETAREAS,
       autoLoadEntities:true,
-      synchronize:true
+      synchronize:false
     }),
     TypeOrmModule.forRoot({
       name:'pokemon',
@@ -58,18 +58,18 @@ import { ProfesordisenapracticaModule } from './_evaluacion/profesordisenapracti
       password:process.env.PASSWORD,
       database: process.env.DBNAMETAREAS,
       autoLoadEntities:true,
-      synchronize:true
+      synchronize:false
     }),
     TypeOrmModule.forRoot({
-      name:'evaluacion',
+      name:'apitarea',
       type:'mysql',
       host:process.env.URL,
       port:3306,
       username:process.env.USUARIO,
       password:process.env.PASSWORD,
-      database: process.env.DBNAMETAREAS,
+      database: process.env.DBAPI,
       autoLoadEntities:true,
-      synchronize:true
+      synchronize:false
     }),
     UsuarioModule,
     //AlumnoModule

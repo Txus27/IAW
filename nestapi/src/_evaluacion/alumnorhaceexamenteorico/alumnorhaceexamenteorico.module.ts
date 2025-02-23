@@ -7,7 +7,7 @@ import { ExamenTeorico } from '../examenteorico/entities/examenteorico.entity';
 import { AlumnoHaceExamenTeorico } from './entities/alumnorhaceexamenteorico.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([AlumnoHaceExamenTeorico, Alumno, ExamenTeorico], 'base1')],
+  imports: [TypeOrmModule.forFeature([AlumnoHaceExamenTeorico, Alumno, ExamenTeorico], 'apitarea')],
   controllers: [AlumnorhaceexamenteoricoController],
   providers: [AlumnorhaceexamenteoricoService],
 })

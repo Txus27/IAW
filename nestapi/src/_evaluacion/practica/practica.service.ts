@@ -8,7 +8,7 @@ import { UpdatePracticaDto } from './dto/update-practica.dto';
 @Injectable()
 export class PracticaService {
   constructor(
-    @InjectRepository(Practica, 'base1')
+    @InjectRepository(Practica, 'apitarea')
     private readonly practicaRepository: Repository<Practica>,
   ) {}
 

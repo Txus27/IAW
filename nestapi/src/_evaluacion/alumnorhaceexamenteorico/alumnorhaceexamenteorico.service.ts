@@ -3,12 +3,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateAlumnorhaceexamenteoricoDto } from './dto/create-alumnorhaceexamenteorico.dto';
 import { UpdateAlumnorhaceexamenteoricoDto } from './dto/update-alumnorhaceexamenteorico.dto';
-import { AlumnoHaceExamenTeorico } from './entities/alumnohaceexamenteorico.entity';
+import { AlumnoHaceExamenTeorico } from './entities/alumnorhaceexamenteorico.entity';
 
 @Injectable()
 export class AlumnorhaceexamenteoricoService {
   constructor(
-    @InjectRepository(AlumnoHaceExamenTeorico, 'base1')
+    @InjectRepository(AlumnoHaceExamenTeorico, 'apitarea')
     private readonly alumnoHaceExamenTeoricoRepository: Repository<AlumnoHaceExamenTeorico>,
   ) {}
 
