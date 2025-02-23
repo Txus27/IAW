@@ -1,14 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { ExamenteoricoService } from './examenteorico.service';
-import { CreateExamenteoricoDto } from './dto/create-examenteorico.dto';
-import { UpdateExamenteoricoDto } from './dto/update-examenteorico.dto';
+import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
+
+import { CreateExamenTeoricoDto } from './dto/create-examenteorico.dto';
+import { UpdateExamenTeoricoDto } from './dto/update-examenteorico.dto';
+import { ExamenTeoricoService } from './examenteorico.service';
 
 @Controller('examenteorico')
 export class ExamenteoricoController {
-  constructor(private readonly examenteoricoService: ExamenteoricoService) {}
+  constructor(private readonly examenteoricoService: ExamenTeoricoService) {}
 
   @Post()
-  create(@Body() createExamenteoricoDto: CreateExamenteoricoDto) {
+  create(@Body() createExamenteoricoDto: CreateExamenTeoricoDto) {
     return this.examenteoricoService.create(createExamenteoricoDto);
   }
 
@@ -22,8 +23,8 @@ export class ExamenteoricoController {
     return this.examenteoricoService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateExamenteoricoDto: UpdateExamenteoricoDto) {
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateExamenteoricoDto: UpdateExamenTeoricoDto) {
     return this.examenteoricoService.update(+id, updateExamenteoricoDto);
   }
 

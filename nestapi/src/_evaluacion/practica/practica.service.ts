@@ -11,40 +11,31 @@ export class PracticaService {
     @InjectRepository(Practica, 'apitarea')
     private readonly practicaRepository: Repository<Practica>,
   ) {}
-
   async create(createPracticaDto: CreatePracticaDto): Promise<Practica> {
     const practica = this.practicaRepository.create(createPracticaDto);
     return await this.practicaRepository.save(practica);
   }
-
   async findAll(): Promise<Practica[]> {
-    return await this.practicaRepository.find({
-      relations: ['alumnosRealizanPractica', 'profesoresDisenanPractica'],
-    });
+    return await this.practicaRepository.find();
   }
-
   async findOne(id: number): Promise<Practica> {
-    const practica = await this.practicaRepository.findOne({
-      where: { id },
-      relations: ['alumnosRealizanPractica', 'profesoresDisenanPractica'],
-    });
-
-    if (!practica) {
-      throw new NotFoundException(`Práctica con ID ${id} no encontrada`);
-    }
-
+    const practica = await this.practicaRepository.findOne({ where: { id } });
+    if (!practica) throw new NotFoundException(`Practice with ID ${id} not found`);
     return practica;
   }
-
   async update(id: number, updatePracticaDto: UpdatePracticaDto): Promise<Practica> {
-    await this.practicaRepository.update(id, updatePracticaDto);
-    return this.findOne(id);
-  }
-
-  async remove(id: number): Promise<void> {
-    const result = await this.practicaRepository.delete(id);
-    if (result.affected === 0) {
-      throw new NotFoundException(`Práctica con ID ${id} no encontrada`);
+    const practica = await this.practicaRepository.findOne({ where: { id } });
+    if (!practica) {throw new NotFoundException(`Practice with ID ${id} not found`);
     }
+    Object.assign(practica, updatePracticaDto);
+    return this.practicaRepository.save(practica);
+  }
+  async remove(id: number): Promise<string> {
+    const practica = await this.practicaRepository.findOne({ where: { id } });
+    if (!practica) {throw new Error(`Practice with ID ${id} not found`);
+    }
+    await this.practicaRepository.remove(practica);
+    return `Practice with ID ${id} successfully deleted`;
   }
 }
+

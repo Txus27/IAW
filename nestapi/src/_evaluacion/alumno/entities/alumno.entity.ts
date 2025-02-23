@@ -1,7 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, OneToMany } from 'typeorm';
-import { AlumnoHaceExamenTeorico } from 'src/_evaluacion/alumnorhaceexamenteorico/entities/alumnorhaceexamenteorico.entity';
-import { AlumnoRealizaPractica } from 'src/_evaluacion/alumnorealizapractica/entities/alumnorealizapractica.entity';
-
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Realiza } from '../../realiza/entities/realiza.entity';
+import { Hace } from '../../hace/entities/hace.entity';
 
 @Entity()
 export class Alumno {
@@ -12,9 +11,6 @@ export class Alumno {
   nif: string;
 
   @Column()
-  grupo: string;
-
-  @Column()
   nombre: string;
 
   @Column()
@@ -23,12 +19,11 @@ export class Alumno {
   @Column()
   apellido2: string;
 
-  @OneToMany(
-    () => AlumnoHaceExamenTeorico,
-    (alumnoshacenexamenteorico) => alumnoshacenexamenteorico.alumno,
-  )
-  alumnosHacenExamenTeorico: AlumnoHaceExamenTeorico[];
-
-  @OneToMany(() => AlumnoRealizaPractica, (arp) => arp.alumno)
-  alumnorealizapractica: AlumnoRealizaPractica[];
+  @Column()
+  grupo: Number;
+ // Relaciones
+  @OneToMany(() => Realiza, (Realiza) => Realiza.alumno)
+  realiza: Realiza[];
+  @OneToMany(() => Hace, (hace) => hace.alumno)
+  hace: Hace[];
 }

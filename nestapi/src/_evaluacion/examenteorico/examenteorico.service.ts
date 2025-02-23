@@ -1,50 +1,39 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { CreateExamenTeoricoDto } from './dto/create-examenteorico.dto';
+import { UpdateExamenTeoricoDto } from './dto/update-examenteorico.dto';
 import { ExamenTeorico } from './entities/examenteorico.entity';
-import { CreateExamenteoricoDto } from './dto/create-examenteorico.dto';
-import { UpdateExamenteoricoDto } from './dto/update-examenteorico.dto';
 
 @Injectable()
-export class ExamenteoricoService {
+export class ExamenTeoricoService {
   constructor(
     @InjectRepository(ExamenTeorico, 'apitarea')
     private readonly examenTeoricoRepository: Repository<ExamenTeorico>,
   ) {}
-
-  async create(createExamenteoricoDto: CreateExamenteoricoDto): Promise<ExamenTeorico> {
-    const examenTeorico = this.examenTeoricoRepository.create(createExamenteoricoDto);
-    return await this.examenTeoricoRepository.save(examenTeorico);
+  async create(createExamenTeoricoDto: CreateExamenTeoricoDto): Promise<ExamenTeorico> {
+    const examen = this.examenTeoricoRepository.create(createExamenTeoricoDto);
+    return await this.examenTeoricoRepository.save(examen);
   }
-
   async findAll(): Promise<ExamenTeorico[]> {
-    return await this.examenTeoricoRepository.find({
-      relations: ['alumnosHacenExamenTeorico'],
-    });
+    return await this.examenTeoricoRepository.find();
   }
-
   async findOne(id: number): Promise<ExamenTeorico> {
-    const examenTeorico = await this.examenTeoricoRepository.findOne({
-      where: { examenteoricoId: id },
-      relations: ['alumnosHacenExamenTeorico'],
-    });
-
-    if (!examenTeorico) {
-      throw new NotFoundException(`Examen teórico con ID ${id} no encontrado`);
-    }
-
-    return examenTeorico;
+    const examen = await this.examenTeoricoRepository.findOne({ where: { id } });
+    if (!examen) throw new Error(`Theoretical Exam with ID ${id} not found`);
+    
+    return examen;
   }
-
-  async update(id: number, updateExamenteoricoDto: UpdateExamenteoricoDto): Promise<ExamenTeorico> {
-    await this.examenTeoricoRepository.update(id, updateExamenteoricoDto);
-    return this.findOne(id);
+  async update(id: number, updateExamenTeoricoDto: UpdateExamenTeoricoDto): Promise<ExamenTeorico> {
+    const examen = await this.examenTeoricoRepository.findOne({ where: { id } });
+    if (!examen) throw new NotFoundException (`Theoretical Exam with ID ${id} not found`);
+    Object.assign(examen, updateExamenTeoricoDto);
+    return this.examenTeoricoRepository.save(examen);
   }
-
-  async remove(id: number): Promise<void> {
-    const result = await this.examenTeoricoRepository.delete(id);
-    if (result.affected === 0) {
-      throw new NotFoundException(`Examen teórico con ID ${id} no encontrado`);
-    }
+  async remove(id: number): Promise<string> {
+    const examen = await this.examenTeoricoRepository.findOne({ where: { id } });
+    if (!examen) throw new NotFoundException(`Theoretical Exam with ID ${id} not found`);
+    await this.examenTeoricoRepository.remove(examen);
+    return `Theoretical Exam with ID ${id} successfully deleted`;
   }
 }
