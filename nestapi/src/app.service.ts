@@ -6,6 +6,6 @@ export class AppService {
     return 'Hola Juan Luis!';
   }
   getCarrito(): string {
-    return 'Productos en el CARRITO!';
+    return 'Productos del CARRITO!';
   }
 }

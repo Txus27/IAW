@@ -1,7 +1,7 @@
 import { Module} from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsuarioModule } from './usuario/usuario.module';
+//import { UsuarioModule } from './usuario/usuario.module';
 //import { AlumnoModule } from './alumno/alumno.module';
 import { BibliotecaModule } from './biblioteca/biblioteca.module';
 import { CineModule } from './cine/cine.module';
@@ -13,7 +13,10 @@ import { ProfesorModule } from './_evaluacion/profesor/profesor.module';
 import { DisenaModule } from './_evaluacion/disena/disena.module';
 import { RealizaModule } from './_evaluacion/realiza/realiza.module';
 import { HaceModule } from './_evaluacion/hace/hace.module';
-
+import { AutorModule } from './_biblioteca/autor/autor.module';
+import { LibroModule } from './_biblioteca/libro/libro.module';
+import { AuthModule } from './_biblioteca/auth/auth.module';
+import { UsuarioModule } from './_biblioteca/users/users.module';
 
 @Module({
   imports: [ConfigModule.forRoot({isGlobal:true,}), 
@@ -72,7 +75,7 @@ import { HaceModule } from './_evaluacion/hace/hace.module';
       autoLoadEntities:true,
       synchronize:true
     }),
-    UsuarioModule,
+    //UsuarioModule,
     //AlumnoModule
     BibliotecaModule,
     CineModule,
@@ -83,7 +86,11 @@ import { HaceModule } from './_evaluacion/hace/hace.module';
     ProfesorModule,
     DisenaModule,
     RealizaModule,
-    HaceModule
+    HaceModule,
+    AutorModule,
+    LibroModule,
+    AuthModule,
+    UsuarioModule
   ],
   controllers: [],
   providers: [],
